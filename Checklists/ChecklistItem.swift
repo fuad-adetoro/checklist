@@ -13,6 +13,10 @@ class ChecklistItem: NSObject, NSCoding {
         aCoder.encode(checked, forKey: "Checked")
     }
     
+    convenience init(text: String, checked: Bool) {
+        self.init(text: text, checked: checked)
+    }
+    
     override init() {
         checked = false
         super.init()
