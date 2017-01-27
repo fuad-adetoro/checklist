@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     
@@ -23,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(dataModel)
         controller.dataModel = dataModel
+        
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
         
         return true
     }
@@ -54,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Saved due to termination")
     }
 
-
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("Received local notification \(notification)")
+    }
 }
 
